@@ -10,6 +10,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import org.slf4j.LoggerFactory
+import kotlin.reflect.KClass
 
 /**
  * Basic implementation of any template processor.
@@ -44,7 +45,7 @@ abstract class BaseTemplateProcessor : TemplateProcessor {
         providerList
             .map { it.getProcessors() }
             .flatten()
-            .associateBy { it::class.java }
+            .associateBy { it::class }
     }
 
     /**
@@ -70,14 +71,14 @@ abstract class BaseTemplateProcessor : TemplateProcessor {
      * Lazily initialized map of providers indexed by the type of processors they provide.
      */
     private val providersByProcessorType by lazy {
-        providerList.map { provider -> provider.getProcessors().map { it::class.java to provider } }
+        providerList.map { provider -> provider.getProcessors().map { it::class to provider } }
             .flatten()
             .toMap()
     }
 
-    override fun dependencies(): List<Class<out FeatureProcessor>> = listOf(
-        MarkdownReadmeProcessor::class.java,
-        GitProcessor::class.java
+    override fun dependencies(): List<KClass<out FeatureProcessor>> = listOf(
+        MarkdownReadmeProcessor::class,
+        GitProcessor::class
     )
 
     override fun getFeatureProviders(): List<FeatureProvider> {
@@ -92,11 +93,11 @@ abstract class BaseTemplateProcessor : TemplateProcessor {
         return processorsOrderById[id] ?: -1
     }
 
-    override fun getFeatureProcessor(type: Class<out FeatureProcessor>): FeatureProcessor? {
+    override fun getFeatureProcessor(type: KClass<out FeatureProcessor>): FeatureProcessor? {
         return processorsByType[type]
     }
 
-    override fun getFeatureProvider(type: Class<out FeatureProcessor>): FeatureProvider? {
+    override fun getFeatureProvider(type: KClass<out FeatureProcessor>): FeatureProvider? {
         return providersByProcessorType[type]
     }
 

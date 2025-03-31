@@ -1,6 +1,7 @@
 package kotli.engine
 
 import kotli.engine.model.LayerTypes
+import kotlin.reflect.KClass
 
 /**
  * The template processor is responsible for fulfilling the template context with data required
@@ -21,7 +22,7 @@ interface TemplateProcessor : TemplateDescriptor {
             override fun getId(): String = "app"
             override fun getType(): LayerType = LayerTypes.App
             override fun createProviders(): List<FeatureProvider> = emptyList()
-            override fun dependencies(): List<Class<out FeatureProcessor>> = emptyList()
+            override fun dependencies(): List<KClass<FeatureProcessor>> = emptyList()
         }
     }
 

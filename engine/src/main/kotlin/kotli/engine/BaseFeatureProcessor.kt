@@ -95,15 +95,6 @@ abstract class BaseFeatureProcessor : FeatureProcessor {
      */
     protected open fun doRemove(state: TemplateState) = Unit
 
-    /**
-     * Checks if the given processor can be applied based on the state provided.
-     *
-     * If not, the processor will be skipped and removed as a result.
-     *
-     * By default, any added processor is applied.
-     */
-    protected open fun canApply(state: TemplateState): Boolean = true
-
     private fun fillDependencies(
         state: TemplateState,
         processor: FeatureProcessor,
@@ -123,7 +114,7 @@ abstract class BaseFeatureProcessor : FeatureProcessor {
             processors.size
         )
         val templateProcessor = state.processor
-        templateProcessor.getFeatureProvider(processor::class.java)?.dependencies()
+        templateProcessor.getFeatureProvider(processor::class)?.dependencies()
             ?.mapNotNull(templateProcessor::getFeatureProcessor)
             ?.minus(this)
             ?.onEach { fillDependencies(state, it, processors, true) }

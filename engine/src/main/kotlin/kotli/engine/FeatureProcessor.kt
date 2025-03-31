@@ -31,4 +31,12 @@ interface FeatureProcessor : DependencyProvider<FeatureProcessor>, FeatureDescri
      */
     fun remove(context: TemplateContext) = Unit
 
+    /**
+     * Checks if the given processor can be applied based on the state provided.
+     *
+     * If not, the processor will be skipped and removed as a result.
+     *
+     * By default, any added processor is applied.
+     */
+    fun canApply(state: TemplateState): Boolean = true
 }

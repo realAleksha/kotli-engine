@@ -2,6 +2,7 @@ package kotli.engine
 
 import kotli.engine.model.Feature
 import kotli.engine.model.Layer
+import kotlin.reflect.KClass
 
 /**
  * Provides all the required metadata to describe this processor.
@@ -45,14 +46,14 @@ interface TemplateDescriptor : Dictionary, DependencyProvider<FeatureProcessor> 
     /**
      * Finds a processor by its type.
      */
-    fun getFeatureProcessor(type: Class<out FeatureProcessor>): FeatureProcessor?
+    fun getFeatureProcessor(type: KClass<out FeatureProcessor>): FeatureProcessor?
 
     /**
      * Finds a provider by its type.
      *
      * @throws IllegalStateException if a provider with the given type is not found.
      */
-    fun getFeatureProvider(type: Class<out FeatureProcessor>): FeatureProvider?
+    fun getFeatureProvider(type: KClass<out FeatureProcessor>): FeatureProvider?
 
     /**
      * Returns all registered providers.
@@ -82,7 +83,7 @@ interface TemplateDescriptor : Dictionary, DependencyProvider<FeatureProcessor> 
             .filter { provider -> provider.getProcessors().any { !it.isInternal() } }
         val layerProviders = features
             .mapNotNull { getFeatureProcessor(id(it)) }
-            .mapNotNull { getFeatureProvider(it::class.java) }
+            .mapNotNull { getFeatureProvider(it::class) }
         return requiredProviders
             .minus(layerProviders.toSet())
             .mapNotNull { provider -> provider.getProcessors().firstOrNull { !it.isInternal() } }

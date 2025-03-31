@@ -43,7 +43,8 @@ internal object MarkdownReadmeProcessor : BaseFeatureProcessor() {
             .flatten()
             .distinct()
             .filter { !it.isInternal() || it.getConfiguration(state) != null }
-            .sortedBy { state.processor.getFeatureProvider(it::class.java)?.getType()?.getOrder() }
+            .filter { it.canApply(state) }
+            .sortedBy { state.processor.getFeatureProvider(it::class)?.getType()?.getOrder() }
             .toList()
             .onEach { processor -> proceedFeature(featuresBuilder, state, processor) }
         if (featuresBuilder.isNotBlank()) {
@@ -75,7 +76,7 @@ internal object MarkdownReadmeProcessor : BaseFeatureProcessor() {
         processor: FeatureProcessor
     ) {
         logger.debug("proceedFeature: {}", processor.getId())
-        val provider = state.processor.getFeatureProvider(processor::class.java) ?: return
+        val provider = state.processor.getFeatureProvider(processor::class) ?: return
         val groupTitle = provider.getType().getTitle() ?: return
         val title = processor.getTitle(state) ?: return
         val usage = createUsage(state, groupTitle, title, processor)
