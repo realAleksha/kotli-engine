@@ -2,8 +2,7 @@ package kotli.engine
 
 import kotli.engine.model.Feature
 import kotli.engine.model.Layer
-import kotli.engine.provider.readme.ReadmeProvider
-import kotli.engine.provider.readme.markdown.MarkdownReadmeProcessor
+import kotli.engine.provider.documentation.readme.ReadmeProcessor
 import kotli.engine.provider.vcs.VcsProvider
 import kotli.engine.provider.vcs.git.GitProcessor
 import kotlinx.coroutines.async
@@ -32,7 +31,6 @@ abstract class BaseTemplateProcessor : TemplateProcessor {
     private val providerList by lazy {
         createProviders().plus(
             arrayOf(
-                ReadmeProvider,
                 VcsProvider
             )
         )
@@ -77,7 +75,7 @@ abstract class BaseTemplateProcessor : TemplateProcessor {
     }
 
     override fun dependencies(): List<KClass<out FeatureProcessor>> = listOf(
-        MarkdownReadmeProcessor::class,
+        ReadmeProcessor::class,
         GitProcessor::class
     )
 

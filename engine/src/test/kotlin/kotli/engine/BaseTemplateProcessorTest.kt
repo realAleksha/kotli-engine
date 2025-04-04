@@ -5,7 +5,7 @@ import kotli.engine.model.Layer
 import kotli.engine.model.LayerTypes
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions
-import java.util.UUID
+import java.util.*
 import kotlin.test.Test
 
 class BaseTemplateProcessorTest {
@@ -55,7 +55,7 @@ class BaseTemplateProcessorTest {
             parent = null
         )
         runBlocking { templateProcessor.process(context) }
-        Assertions.assertEquals(3, context.getAppliedFeatures().size)
+        Assertions.assertEquals(2, context.getAppliedFeatures().size)
         Assertions.assertTrue(context.getAppliedFeatures().any { it.id == "1" })
         Assertions.assertSame(context.getRoot(), context)
     }

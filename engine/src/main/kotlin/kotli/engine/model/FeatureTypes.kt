@@ -23,8 +23,8 @@ enum class FeatureTypes(
     UserFlow("userflow", 4),
     Quality("quality", 5),
     Testing("testing", 6),
-    Documentation("documentation", 7),
-    Workflow("workflow", 8),
+    Workflow("workflow", 7),
+    Guides("guides", 8),
     Examples("examples", 9),
     Unspecified("unspecified", Int.MIN_VALUE)
 

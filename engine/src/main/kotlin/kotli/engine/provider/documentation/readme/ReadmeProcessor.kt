@@ -1,4 +1,4 @@
-package kotli.engine.provider.readme.markdown
+package kotli.engine.provider.documentation.readme
 
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.FeatureProcessor
@@ -7,11 +7,9 @@ import kotli.engine.TemplateState
 import kotli.engine.template.rule.WriteText
 import java.net.URLEncoder
 
-internal object MarkdownReadmeProcessor : BaseFeatureProcessor() {
+object ReadmeProcessor : BaseFeatureProcessor() {
 
-    override fun getId(): String = "readme.markdown"
-
-    override fun isInternal(): Boolean = true
+    override fun getId(): String = "documentation.readme"
 
     override fun doApply(state: TemplateState) {
         val readmeBuilder = StringBuilder()
