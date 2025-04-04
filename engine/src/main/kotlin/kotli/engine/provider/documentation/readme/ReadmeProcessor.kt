@@ -2,14 +2,23 @@ package kotli.engine.provider.documentation.readme
 
 import kotli.engine.BaseFeatureProcessor
 import kotli.engine.FeatureProcessor
+import kotli.engine.FeatureTag
 import kotli.engine.TemplateProcessor
 import kotli.engine.TemplateState
+import kotli.engine.model.FeatureTags
 import kotli.engine.template.rule.WriteText
 import java.net.URLEncoder
 
 object ReadmeProcessor : BaseFeatureProcessor() {
 
     override fun getId(): String = "documentation.readme"
+    override fun getTags(): List<FeatureTag> = listOf(
+        FeatureTags.Android,
+        FeatureTags.IOS,
+        FeatureTags.Web,
+        FeatureTags.Desktop,
+        FeatureTags.Server,
+    )
 
     override fun doApply(state: TemplateState) {
         val readmeBuilder = StringBuilder()
