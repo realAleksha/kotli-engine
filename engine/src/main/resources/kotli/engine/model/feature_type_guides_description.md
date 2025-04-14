@@ -1,1 +1,1 @@
-Guides offer documentation, examples, and showcases to simplify development, clarify workflows, and explain generated template features and architecture.
+Guides provide documentation, examples, and showcases to simplify development, clarify workflows, and explain the features and architecture of generated templates.

@@ -1,1 +1,1 @@
-Examples showcasing various flows and usage scenarios. The purpose of these examples is to provide a clearer understanding of how individual components can be used either independently or in conjunction with each other.
+Examples demonstrate common flows and usage scenarios, helping you understand how individual components work—both on their own and together.

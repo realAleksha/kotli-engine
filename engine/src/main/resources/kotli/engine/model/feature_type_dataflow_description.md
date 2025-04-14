@@ -1,1 +1,1 @@
-Dataflow features provide predefined technical solutions to facilitate working with various data sources in the application. All solutions ensure the proper way to access the target source or sources they implement.
+Data Flow features offer ready-to-use solutions for integrating and working with various data sources. Each setup ensures proper, efficient access to the systems or APIs it connects to.
