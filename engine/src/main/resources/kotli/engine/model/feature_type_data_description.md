@@ -1,0 +1,1 @@
+Preconfigured integrations that enable seamless access to various data sources. Designed for efficiency and reliability when connecting to underlying systems or APIs.

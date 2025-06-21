@@ -1,1 +1,0 @@
-User Flow features address common patterns found across applications. They provide flexible foundations that make it easy to adapt both UI and business logic to your specific needs.

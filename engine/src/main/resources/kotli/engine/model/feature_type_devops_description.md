@@ -1,1 +1,0 @@
-DevOps features automate the delivery process, ensuring code changes are deployed efficiently and reliably. Covering build systems, distribution methods, and CI/CD practices, they’re a key part of any modern workflow.

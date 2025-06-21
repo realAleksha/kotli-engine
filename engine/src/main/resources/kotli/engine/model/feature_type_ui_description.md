@@ -1,1 +1,1 @@
-UI features predefine general UI layouts, components, and their appearance, allowing developers to begin development without concern for these aspects later on.
+UI components, layouts, and navigation logic used throughout the app to manage user flows.

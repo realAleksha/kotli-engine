@@ -12,5 +12,4 @@ class FeatureTypesTest {
             Assertions.assertNotNull(type.getTitle(), type.getId())
         }
     }
-
 }

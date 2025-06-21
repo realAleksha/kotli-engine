@@ -2,8 +2,9 @@ package kotli.engine
 
 import kotli.engine.model.Feature
 import kotli.engine.model.Layer
-import kotli.engine.provider.vcs.VcsProvider
-import kotli.engine.provider.vcs.git.GitProcessor
+import kotli.engine.provider.metadata.GitProcessor
+import kotli.engine.provider.metadata.MetadataProvider
+import kotli.engine.provider.metadata.ReadmeProcessor
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
@@ -28,11 +29,7 @@ abstract class BaseTemplateProcessor : TemplateProcessor {
      * Includes default providers like ConfigurationProvider.
      */
     private val providerList by lazy {
-        createProviders().plus(
-            arrayOf(
-                VcsProvider
-            )
-        )
+        createProviders().plus(MetadataProvider)
     }
 
     /**
@@ -74,7 +71,8 @@ abstract class BaseTemplateProcessor : TemplateProcessor {
     }
 
     override fun dependencies(): List<KClass<out FeatureProcessor>> = listOf(
-        GitProcessor::class
+        ReadmeProcessor::class,
+        GitProcessor::class,
     )
 
     override fun getFeatureProviders(): List<FeatureProvider> {

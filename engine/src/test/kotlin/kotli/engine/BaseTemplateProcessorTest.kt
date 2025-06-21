@@ -55,7 +55,7 @@ class BaseTemplateProcessorTest {
             parent = null
         )
         runBlocking { templateProcessor.process(context) }
-        Assertions.assertEquals(2, context.getAppliedFeatures().size)
+        Assertions.assertEquals(3, context.getAppliedFeatures().size)
         Assertions.assertTrue(context.getAppliedFeatures().any { it.id == "1" })
         Assertions.assertSame(context.getRoot(), context)
     }
@@ -74,7 +74,7 @@ class BaseTemplateProcessorTest {
     ) : BaseFeatureProvider() {
         override fun getId(): String = id
         override fun isRequired(): Boolean = required
-        override fun getType(): FeatureType = FeatureTypes.Metadata
+        override fun getType(): FeatureType = FeatureTypes.Foundation
         override fun createProcessors(): List<FeatureProcessor> = processors
     }
 

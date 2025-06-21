@@ -1,1 +1,0 @@
-Essential project setup and config. Pre-tuned with best practices - little to no changes needed.

@@ -1,1 +1,0 @@
-Essential features offers general details about project setup and configuration. Typically, the recommended features are pre-configured and do not need to be altered.

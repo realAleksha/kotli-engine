@@ -1,0 +1,1 @@
+Foundational project setup and configuration, optimized with best practices. Requires minimal to no modifications.

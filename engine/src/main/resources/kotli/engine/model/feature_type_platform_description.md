@@ -1,0 +1,1 @@
+The selected platforms shape the source code structure. Regardless of the app's distribution across multiple platforms, this structure ensures proper configuration and functionality.
