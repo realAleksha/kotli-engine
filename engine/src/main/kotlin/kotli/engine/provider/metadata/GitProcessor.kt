@@ -17,9 +17,11 @@ object GitProcessor : MetadataProcessor() {
                 out/
                 build/
                 dist/
+                node_modules/
                 
                 .idea
                 .gradle
+                .kotlin
                 .vscode
                 .project
                 .settings
