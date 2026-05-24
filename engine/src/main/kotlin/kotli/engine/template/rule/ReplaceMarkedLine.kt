@@ -15,14 +15,15 @@ data class ReplaceMarkedLine(
     private val marker: String,
     private val replacer: String,
     private val singleLine: Boolean = false,
+    private val ignoreCase: Boolean = true
 ) : FileRule() {
 
     override fun doApply(file: TemplateFile) {
         val lines = file.lines
-        val indexOf = lines.indexOfFirst { isMarked(file, it, marker) }.takeIfIndex() ?: return
+        val indexOf = lines.indexOfFirst { isMarked(file, it, marker, ignoreCase) }.takeIfIndex() ?: return
         val newLine = replacer
         lines.forEach { line ->
-            if (isMarked(file, line, marker)) {
+            if (isMarked(file, line, marker, ignoreCase)) {
                 val startIndex = line.indexOfFirst { it != ' ' }.takeIfIndex() ?: 0
                 val updatedLine = "${line.substring(0, startIndex)}$newLine"
                 lines[indexOf] = updatedLine

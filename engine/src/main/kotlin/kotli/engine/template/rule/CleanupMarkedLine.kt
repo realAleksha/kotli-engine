@@ -12,13 +12,14 @@ import kotli.engine.template.TemplateFile
  */
 data class CleanupMarkedLine(
     private val marker: String,
-    private val singleLine: Boolean = false
+    private val singleLine: Boolean = false,
+    private val ignoreCase: Boolean = true
 ) : FileRule() {
 
     override fun doApply(file: TemplateFile) {
         val lines = file.lines
         lines.forEachIndexed { index, line ->
-            if (isMarked(file, line, marker)) {
+            if (isMarked(file, line, marker, ignoreCase)) {
                 lines[index] = cleanup(file, line)
                 if (singleLine) return
             }

@@ -20,8 +20,8 @@ abstract class FileRule {
         doApply(file)
     }
 
-    protected fun isMarked(file: TemplateFile, line: String, marker: String): Boolean {
-        return line.contains(marker, ignoreCase = true)
+    protected fun isMarked(file: TemplateFile, line: String, marker: String, ignoreCase: Boolean = true): Boolean {
+        return line.contains(marker, ignoreCase)
     }
 
     protected fun cleanup(file: TemplateFile, line: String): String {

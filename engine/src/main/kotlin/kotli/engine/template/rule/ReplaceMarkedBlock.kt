@@ -12,13 +12,14 @@ import kotli.engine.template.TemplateFile
  */
 data class ReplaceMarkedBlock(
     private val marker: String,
-    private val replacer: String
+    private val replacer: String,
+    private val ignoreCase: Boolean = true
 ) : FileRule() {
 
     override fun doApply(file: TemplateFile) {
         val lines = file.lines
-        val indexOfFirst = lines.indexOfFirst { isMarked(file, it, marker) }.takeIfIndex() ?: return
-        val indexOfLast = lines.indexOfLast { isMarked(file, it, marker) }.takeIfIndex() ?: return
+        val indexOfFirst = lines.indexOfFirst { isMarked(file, it, marker, ignoreCase) }.takeIfIndex() ?: return
+        val indexOfLast = lines.indexOfLast { isMarked(file, it, marker, ignoreCase) }.takeIfIndex() ?: return
         if (indexOfFirst == indexOfLast) return
         val firstLine = lines[indexOfFirst]
         val tab = firstLine.substring(0, firstLine.indexOfFirst { it != ' ' }.takeIfIndex() ?: 0)

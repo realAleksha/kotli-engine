@@ -12,16 +12,17 @@ import kotli.engine.template.TemplateFile
  */
 data class RemoveMarkedLine(
     private val marker: String,
-    private val singleLine: Boolean = false
+    private val singleLine: Boolean = false,
+    private val ignoreCase: Boolean = true
 ) : FileRule() {
 
     override fun doApply(file: TemplateFile) {
         val lines = file.lines
         if (singleLine) {
-            val index = lines.indexOfFirst { isMarked(file, it, marker) }.takeIfIndex() ?: return
+            val index = lines.indexOfFirst { isMarked(file, it, marker, ignoreCase) }.takeIfIndex() ?: return
             lines.removeAt(index)
         } else {
-            lines.removeIf { isMarked(file, it, marker) }
+            lines.removeIf { isMarked(file, it, marker, ignoreCase) }
         }
     }
 
